@@ -1,0 +1,27 @@
+global state
+{
+    "isLoggedIn" : boolean,
+    "currentMatch" : "null | json", // null means not started
+    "images": {
+        "team1": "url",
+        "team2": "url"
+    },
+    "availablePlayers": {"name here": credit_here},
+    "myTeam": {cap: "cap_name", vcap: "vcap_name", team: [list_of_names]},
+    "timeStep": 5,
+    "currentTime": 125,
+    "matchWickets": 0,
+    "matchRuns": 0,
+    "matchPoints": 0,
+    "inningDetails": "1st Inning: 6 overs, 2 balls",
+    "playerDetails": "(S) (NS) (B)",
+    "matchLogs": [
+        {
+            "run": 0,
+            "wicket": 0,
+            "details": "",
+            "point": 0
+        },
+        ...
+    ]
+}
