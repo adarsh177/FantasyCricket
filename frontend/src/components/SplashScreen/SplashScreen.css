@@ -1,0 +1,24 @@
+.MainContainer{
+    background: linear-gradient(162.71deg, #760817 -0.07%, #9E0C21 93.01%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.MiddelBall{
+    width: 15vh;
+    height: 15vh;
+    object-fit: contain;
+}
+
+.BottomImage{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 110%;
+    transform: translateY(5%) translateX(-4.54%);
+    max-height: 30vh;
+}

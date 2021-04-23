@@ -1,23 +1,28 @@
 import './App.css';
+import React from 'react'
+import SplashScreen from './components/SplashScreen/SplashScreen';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      showSplash: true,
+    };
+
+    setTimeout(() => this.setState({showSplash: false}), 5000);
+  }
+  
+  render(){
+    if(this.state.showSplash){
+      return <SplashScreen />
+    }
+
+    return(
+      <div>
+        Showing : {this.state.showSplash.toString()}
+      </div>
+    );
+  }
 }
 
 export default App;
