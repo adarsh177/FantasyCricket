@@ -1,6 +1,7 @@
 global state
 {
     "isLoggedIn" : boolean,
+    "matchHistory": []
     "currentMatch" : "null | json", // null means not started
     "images": {
         "team1": "url",

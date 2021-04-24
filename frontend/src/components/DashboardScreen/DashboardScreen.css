@@ -1,0 +1,104 @@
+.DashboardMainContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white !important;
+}
+
+.UpperPart{
+    width: calc(100% - 40px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(162.71deg, #760817 -0.07%, #9E0C21 93.01%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.LogoutContainer{
+    width: 100%;
+    text-align: end;
+}
+
+.LogoutBtn{
+    font-size: 1em;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+}
+
+.TeamContainerDashboard{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 60px;
+}
+
+.TeamContainerDashboard .TeamEntryContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 130px;
+}
+
+.TeamName{
+    color: white;
+    font-size: 0.8em;
+    font-weight: 400;
+    width: 90%;
+    text-align: center;
+}
+
+.TeamEntryContainer img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    background-color: white;
+    border-radius: 100px;
+    border: 1px solid rgb(131, 0, 0);
+    box-shadow: 1px 1px 5px rgba(70, 70, 70, 0.562);
+}
+
+.TeamContainerDashboard .VirticalRule{
+    width: 1px;
+    height: 150px;
+    background-color: rgba(137, 137, 137, 0.733);
+}
+
+.BtnRandomizeMatch{
+    color: white;
+    font-weight: 400;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+.MatchHistoryPart{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.MatchHistoryHead{
+    color: gray;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.NoMatchImage{
+    width: 60vw;
+    align-self: center;
+    margin-top: 40px;
+}

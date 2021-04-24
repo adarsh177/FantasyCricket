@@ -18,7 +18,7 @@ class SplashScreen extends React.Component{
     }
 
     componentDidMount(){
-        setTimeout(() => this.checkLogin(), 2500);
+        setTimeout(() => this.checkLogin(), 5000);
     }
 
     checkLogin(){
@@ -29,12 +29,13 @@ class SplashScreen extends React.Component{
             // logged in
             this.history.push('/Login');
         }
+
         console.log('Signin:', firebase.auth().currentUser != null);
     }
 
     render(){
         return(
-            <div className="MainContainer">
+            <div className="SplashMainContainer">
                 <img src={IcBall} className="MiddelBall" alt=""/>
                 <div className="shadow" />
                 <img src={BottomImg} className="BottomImage" alt="" />

@@ -1,6 +1,6 @@
 
 
 export default function LoginReducer(state, action){
-    //TODO
+    state.isLoggedIn = action.data;
     return state;
 }

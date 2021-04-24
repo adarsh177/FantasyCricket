@@ -5,6 +5,7 @@ import 'firebaseui/dist/firebaseui.css';
 import './LoginScreen.css';
 import ball from '../../resources/ic_ball.svg';
 import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class LoginScreen extends React.Component{
 
@@ -12,11 +13,13 @@ class LoginScreen extends React.Component{
         super(props);
         this.history = this.props.history;
         this.location = this.props.location;
-        console.log('Location-login', this.location);
-        console.log('history-login', this.history);
     }
 
     componentDidMount(){
+        if(firebase.auth().currentUser != null){
+            this.history.push('/Dashboard');
+            return;
+        }
         this.startLogin();
     }
 
@@ -26,6 +29,7 @@ class LoginScreen extends React.Component{
             callbacks: {
                 signInSuccessWithAuthResult: (auth, redirect) => {
                     console.log('Auth',auth);
+                    this.history.push('/Dashboard');
                 },
                 signInFailure: (err) => {
                     alert('Error Signing you in');
@@ -59,8 +63,8 @@ class LoginScreen extends React.Component{
 
     render(){
         return(
-            <div className="MainContainer">
-                <img src={ball} className="Ball"/>
+            <div className="LoginMainContainer">
+                <img src={ball} className="Ball" alt=""/>
                 <h1 className="MainTitle">Fantasy Cricket</h1>
                 <p className="Subtext">Start your fantasy Innings by logging in</p>
                 <div id="UiClass" style={{marginTop: "50px"}}>
@@ -71,4 +75,14 @@ class LoginScreen extends React.Component{
     }
 }
 
-export default withRouter(LoginScreen);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        
+    }
+}
+
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginScreen));

@@ -5,8 +5,13 @@ import LoginScreen from './components/LoginScreen/LoginScreen.js';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
+import DashboardScreen from './components/DashboardScreen/DashboardScreen';
+import { connect } from 'react-redux';
+import Result from './components/Result/Result';
+import CreateTeam from './components/CreateTeam/CreateTeam';
 
 class App extends React.Component{
 
@@ -20,9 +25,19 @@ class App extends React.Component{
     this.history = this.props.history;
 
     this.initializeFirebase();
+    this.AddAuthListener();
   }
 
-  async initializeFirebase(){
+  AddAuthListener(){
+    firebase.auth().onAuthStateChanged(
+      (user) => {
+        console.log('User log change', user);
+        this.props.userLoggedIn(user != null);
+      }
+    );
+  }
+
+  initializeFirebase(){
     if(firebase.apps.length > 0)
       return;
       
@@ -38,6 +53,7 @@ class App extends React.Component{
     };
     var app = firebase.initializeApp(firebaseConfig);
     app.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    console.log('Firebase setup done');
   }
   
   render(){
@@ -53,15 +69,31 @@ class App extends React.Component{
             <LoginScreen />
           </Route>
 
-          <Router path="/Dashboard">
-            <div>
-              Showing : {this.state.showSplash.toString()}
-            </div>
-          </Router>
+          <Route path="/Dashboard">
+            <DashboardScreen />
+          </Route>
+
+          <Route path="/Result">
+            <Result />
+          </Route>
+
+          <Route path="/CreateTeam">
+            <CreateTeam />
+          </Route>
         </Switch>
       </Router>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      userLoggedIn: (loggedIn) => dispatch({type: "LOGIN_UPDATE", data: loggedIn}),
+  }
+}
+
+const mapStateToProps = (state) => {
+  return state;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

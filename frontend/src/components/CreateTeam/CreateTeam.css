@@ -1,0 +1,130 @@
+.TeamMainContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white !important;
+}
+
+.HeaderSection{
+    width: calc(100% - 40px);
+    padding: 20px;
+    background: linear-gradient(162.71deg, #760817 -0.07%, #9E0C21 93.01%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.BackBtn{
+    background: none;
+    border: none;
+    font-size: 1em;
+    color: white;
+    align-self: flex-start;
+}
+
+.BackBtn img{
+    width: 0.8em;
+    height: 0.8em;
+    object-fit: contain;
+    margin-right: 5px;
+}
+
+.TeamContainer{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.TeamContainer .VirticalRule{
+    width: 1px;
+    height: 50px;
+    background-color: rgba(137, 137, 137, 0.733);
+}
+
+.TeamContainer img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background-color: white;
+    border-radius: 100px;
+    border: 1px solid rgb(131, 0, 0);
+    box-shadow: 1px 1px 5px rgba(70, 70, 70, 0.562);
+}
+
+.CreditLeft{
+    font-weight: 700;
+    font-size: 1em;
+    color: white;
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+.BottomActionBtn{
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: rgba(158, 12, 33, 1);
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.4em;
+}
+
+.MiddleSection{
+    flex: 1;
+    width: 100%;
+    display: block;
+    overflow-y: scroll;
+}
+
+.SearchBarDiv{
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.SearchBarDiv img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+.SearchBarDiv input{
+    font-size: 1.2em;
+    font-weight: 400;
+    border: none;
+    background: none;
+    flex: 1;
+    margin-left: 10px;
+    outline: none;
+}
+
+.TableLegend{
+    width: calc(100% - 70px);
+    padding: 0px 10px;
+    padding-left: 60px;
+    background-color: #E1E1E1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.TableLegend .name{
+    color:#505050;
+    font-size: 1em;
+    font-weight: 700;
+}
