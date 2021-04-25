@@ -1,16 +1,18 @@
 .TeamMainContainer{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background: white !important;
+    position: relative;
 }
 
 .HeaderSection{
     width: calc(100% - 40px);
     padding: 20px;
+    padding-bottom: 10px;
     background: linear-gradient(162.71deg, #760817 -0.07%, #9E0C21 93.01%);
     display: flex;
     flex-direction: column;
@@ -40,18 +42,18 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .TeamContainer .VirticalRule{
     width: 1px;
-    height: 50px;
+    height: 40px;
     background-color: rgba(137, 137, 137, 0.733);
 }
 
 .TeamContainer img{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     background-color: white;
     border-radius: 100px;
@@ -61,13 +63,16 @@
 
 .CreditLeft{
     font-weight: 700;
-    font-size: 1em;
+    font-size: 0.8em;
     color: white;
     margin-top: 5px;
     align-self: flex-end;
 }
 
 .BottomActionBtn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -77,13 +82,17 @@
     text-align: center;
     vertical-align: middle;
     font-size: 1.4em;
+    border: none;
 }
 
 .MiddleSection{
     flex: 1;
     width: 100%;
-    display: block;
-    overflow-y: scroll;
+    overflow: scroll;
+}
+
+.MiddleSection::-webkit-scrollbar{
+    display: none;
 }
 
 .SearchBarDiv{
@@ -127,4 +136,18 @@
     color:#505050;
     font-size: 1em;
     font-weight: 700;
+}
+
+.ListWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.ListWrapper:last-child{
+    margin-bottom: 50px;
 }

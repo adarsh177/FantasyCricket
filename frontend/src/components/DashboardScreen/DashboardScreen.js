@@ -49,8 +49,6 @@ class DashboardScreen extends React.Component{
 
                 <div className="MatchHistoryPart">
                     <p className="MatchHistoryHead">Your match history</p>
-                    <br />
-
                     {
                         this.props.matchHistory.length > 0 ? 
                             <MatchHistory /> 

@@ -22,8 +22,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 110%;
-    transform: translateY(5%) translateX(-4.54%);
+    width: 100%;
+    /* transform: translateX(-4.54%); */
     max-height: 30vh;
 }
 

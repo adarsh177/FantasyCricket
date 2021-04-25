@@ -7,7 +7,7 @@ const initState = {
     isLoggedIn : false,
     currentMatch : null, // null means not started'
     totalMatch: 0,
-    matchHistory: [],
+    matchHistory: [""],
     images: {},
     availablePlayers: {},
     myTeam: {cap: null, vcap: null, team: []},

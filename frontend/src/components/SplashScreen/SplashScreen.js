@@ -12,13 +12,10 @@ class SplashScreen extends React.Component{
     constructor(props){
         super(props);
         this.history = this.props.history;
-        this.location = this.props.location;
-        console.log('Location-spl', this.location);
-        console.log('history-spl', this.history);
-    }
+    } 
 
     componentDidMount(){
-        setTimeout(() => this.checkLogin(), 5000);
+        setTimeout(() => this.checkLogin(), 3000);
     }
 
     checkLogin(){

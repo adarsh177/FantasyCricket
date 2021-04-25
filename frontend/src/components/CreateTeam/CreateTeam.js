@@ -4,6 +4,8 @@ import Progress from '../Progress';
 import './CreateTeam.css';
 import SearchIc from '../../resources/ic_search.png';
 import { withRouter } from 'react-router';
+import PlayerSelectEntry from './Entries/PlayerSelectEntry';
+import C_VC_SelectEntry from './Entries/C_VC_SelectEntry';
 
 class CreateTeam extends React.Component{
 
@@ -21,9 +23,8 @@ class CreateTeam extends React.Component{
                         <div className="VirticalRule"></div>
                         <img src="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg" alt="" />
                     </div>
-                    <br />
                     <Progress value={50} />
-                    <p className="CreditLeft">Credit left: 50</p>
+                    <p className="CreditLeft">Credit left: 502</p>
                 </div>
 
                 <div className="SearchBarDiv">
@@ -32,13 +33,25 @@ class CreateTeam extends React.Component{
                 </div>
                 <div className="TableLegend">
                     <p className="name" style={{flex: 3}}>PLAYER</p>
-                    <p className="name" style={{flex: 2}}>CREDITS</p>
+                    <p className="name" style={{flex: 3}}>CREDITS</p>
                 </div>
 
                 <div className="MiddleSection">
-                    <div style={{width: "50%", backgroundColor: "red", height: "600px"}}></div>
-                    <div style={{width: "50%", backgroundColor: "green", height: "600px"}}></div>
-                    <div style={{width: "50%", backgroundColor: "blue", height: "600px"}}></div>
+                    <div className="ListWrapper">
+                        <C_VC_SelectEntry playerName=" Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                        <C_VC_SelectEntry playerName="Adarsh Shrivastava" image="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" />
+                    </div>
                 </div>
                 
                 <button className="BottomActionBtn">
