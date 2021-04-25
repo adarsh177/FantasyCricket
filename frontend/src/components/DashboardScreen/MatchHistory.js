@@ -3,36 +3,27 @@ import React, { Fragment } from 'react';
 import MatchHistoryEntry from './MatchHistoryEntry';
 
 
+// total points, history
 class MatchHistory extends React.Component{
+
+    constructor(props){
+        super(props);
+    }
 
     render(){
         return(
             <Fragment>
-                <this.TotalPointsEarned total={250} />
-                <MatchHistoryEntry 
-                    team1="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg"
-                    team2="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg"
-                    matchResult="Kings XI Punjab won"
-                    points={120}
-                    />
-                <MatchHistoryEntry 
-                    team1="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg"
-                    team2="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg"
-                    matchResult="Kings XI Punjab won"
-                    points={120}
-                />
-                <MatchHistoryEntry 
-                    team1="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg"
-                    team2="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg"
-                    matchResult="Kings XI Punjab won"
-                    points={120}
-                    />
-                <MatchHistoryEntry 
-                    team1="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg"
-                    team2="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg"
-                    matchResult="Kings XI Punjab won"
-                    points={120}
-                    />
+                <this.TotalPointsEarned total={this.props.totalPoints} />
+                {this.props.history.map((match) => {
+                    return(
+                        <MatchHistoryEntry 
+                        team1={match.t1}
+                        team2={match.t2}
+                        matchResult={`${match.win} won`}
+                        points={match.point}
+                        />        
+                    )
+                })}
             </Fragment>
         )
     }

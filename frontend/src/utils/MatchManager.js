@@ -15,6 +15,11 @@ class MatchManager{
 
     Players = {}; //playername: teamname
 
+    Outcome = {
+        team: "",
+        desc: "",
+    };
+
     constructor(jsonData){
         if(typeof jsonData == "string")
             this.json = JSON.parse(jsonData);
@@ -29,6 +34,9 @@ class MatchManager{
         this.secondInningLength = 0;
         this.firstTeam = "";
         this.secondTeam = "";
+        this.totalRuns = 0;
+        this.totalWickets = 0;
+        this.totalPoints = 0;
         this.loadConfig();
     }
 
@@ -38,6 +46,15 @@ class MatchManager{
         this.totalLength = this.firstInningLength + this.secondInningLength;
         this.firstTeam = this.json.innings[0]['1st innings'].team;
         this.secondTeam = this.json.innings[1]['2nd innings'].team;
+
+        if(this.json.info.outcome.by.runs && this.json.info.outcome.by.wickets){
+            this.Outcome.desc = `won by ${this.json.info.outcome.by.wickets} (${this.json.info.outcome.by.runs} runs)`
+        }else if(this.json.info.outcome.by.runs){
+            this.Outcome.desc = `won by ${this.json.info.outcome.by.runs} runs`;
+        }else{
+            this.Outcome.desc = `won by ${this.json.info.outcome.by.wickets} wickets`;
+        }
+        this.Outcome.team = this.json.info.outcome.winner;
 
         this.loadPlayers();
     }
@@ -65,50 +82,62 @@ class MatchManager{
             inning: 0,
             currentOver: 0,
             currentBall: 0,
-            batsman: "",
-            bowler: "",
-            non_striker: "",
-            runs: 0,
-            wicket: {
-                fielders: [
-                    "DB Ravi Teja"
-                ],
-                kind: "",
-                player_out: ""
-            },
-            point: {
-                "Player": 0
-            }
+            raw: {}
         };
 
         if(this.seeker < this.firstInningLength){
             // first inning
             var data = this.json.innings[0]['1st innings'].deliveries[this.seeker];
+            if(data == null) return null;
             var key = Object.keys(data)[0];
 
             ballData.inning = 1;
             ballData.currentOver = parseInt(key.split('.')[0], 10);
             ballData.currentBall = parseInt(key.split('.')[1], 10);
-            ballData.batsman = data[key].batsman;
-            ballData.bowler = data[key].bowler;
-            ballData.non_striker = data[key].non_striker;
-            ballData.runs = data[key].runs.total;
-            ballData.wicket = data[key].wicket;
+            ballData.raw = data[key];
+
+            // adding player scores
+            if(data[key].runs.total > 0){
+                if(!Object.keys(this.PlayerScores).includes(data[key].batsman)){
+                    this.PlayerScores[data[key].batsman] = 0;
+                }
+                this.PlayerScores[data[key].batsman] += data[key].runs.total;
+            }
+
+            //incrementing runs
+            this.totalRuns += data[key].runs.total;
+
+            // imcr... wickets
+            if(data[key].wicket){
+                this.totalWickets += 1;
+            }
 
         }else if(this.seeker < (this.firstInningLength + this.secondInningLength)){
             // second inning
             var data = this.json.innings[1]['2nd innings'].deliveries[this.seeker];
+            if(data == null) return null;
             var key = Object.keys(data)[0];
 
             ballData.inning = 2;
             ballData.currentOver = parseInt(key.split('.')[0], 10);
             ballData.currentBall = parseInt(key.split('.')[1], 10);
-            ballData.batsman = data[key].batsman;
-            ballData.bowler = data[key].bowler;
-            ballData.non_striker = data[key].non_striker;
-            ballData.runs = data[key].runs.total;
-            ballData.wicket = data[key].wicket;
+            ballData.raw = data[key];
 
+            // adding player scores
+            if(data[key].runs.total > 0){
+                if(!Object.keys(this.PlayerScores).includes(data[key].batsman)){
+                    this.PlayerScores[data[key].batsman] = 0;
+                }
+                this.PlayerScores[data[key].batsman] += data[key].runs.total;
+            }
+
+            //incrementing runs
+            this.totalRuns += data[key].runs.total;
+
+            // imcr... wickets
+            if(data[key].wicket){
+                this.totalWickets += 1;
+            }
         }else{
             // match over
             return null;

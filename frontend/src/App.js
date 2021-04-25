@@ -46,6 +46,7 @@ class App extends React.Component{
         start: snap.child('start').val(),
         balls: snap.child('balls').val(),
         id: snap.child('id').val(),
+        team: snap.child('team').val()
       });
     });
 
@@ -87,14 +88,14 @@ class App extends React.Component{
   
   render(){
     return(
-      <Router>
-        <Switch>
-          <Route path="/" exact>      <SplashScreen />    </Route> 
+      <Router >
+        <Switch >
           <Route path="/Login">       <LoginScreen />     </Route>
           <Route path="/Dashboard">   <DashboardScreen /> </Route>
           <Route path="/Result">      <Result />          </Route>
           <Route path="/CreateTeam">  <CreateTeam />      </Route>
           <Route path="/Live">        <LiveScreen />      </Route>
+          <Route path="/">      <SplashScreen />    </Route> 
         </Switch>
       </Router>
     );

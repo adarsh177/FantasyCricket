@@ -96,12 +96,12 @@ class CreateTeam extends React.Component{
                     </div>
                 </div>
 
-                {(this.state.mode === "selectPlayer" && this.state.teamError) ? 
+                {(this.state.mode === "playerSelect" && this.state.teamError) ? 
                 <p className="TeamError">
                     Please Select exact 11 players with credit sum equal to or under 100
                 </p>: null}
 
-                {(this.state.mode !== "selectPlayer" && this.state.teamError) ? 
+                {(this.state.mode !== "playerSelect" && this.state.teamError) ? 
                 <p className="TeamError">
                     Please select your captain and Vice captain
                 </p>: null}

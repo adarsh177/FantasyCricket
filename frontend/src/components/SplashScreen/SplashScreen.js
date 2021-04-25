@@ -23,13 +23,22 @@ class SplashScreen extends React.Component{
     checkLogin(){
         if(firebase.auth().currentUser != null){
             // logged in
-            this.history.push('/Dashboard');
+            this.loadDashboard();
         }else{
             // logged in
             this.history.push('/Login');
         }
 
         console.log('Signin:', firebase.auth().currentUser != null);
+    }
+
+    loadDashboard(){
+        if(this.props.configData == null){
+            setTimeout(() => this.loadDashboard(), 500);
+            return;
+        }
+            
+        this.history.push('/Dashboard');
     }
 
     render(){

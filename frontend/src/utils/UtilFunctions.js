@@ -6,7 +6,7 @@ export async function GetDownloadLink(bucketLocation){
 
 export async function GetMatchJSON(matchId){
     var matchData = localStorage.getItem(matchId);
-    if(matchData == null){
+    if(matchData == null || matchData === "{}" || matchData === ""){
         console.log('Downloading data');
         var downloadLink = await GetDownloadLink(`/Matches/${matchId}.json`);
         console.log('Url', downloadLink);
