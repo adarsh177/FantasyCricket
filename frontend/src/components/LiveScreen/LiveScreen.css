@@ -1,0 +1,127 @@
+.LiveMainContainer{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    text-align: center;
+    background: white !important;
+    scroll-behavior: smooth;
+}
+
+.UpperPart{
+    border-radius: 0 !important;
+}
+
+.TeamDetailsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.virticalRule{
+    width: 1px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.589);
+    margin: 0 10px;
+}
+
+.BatBall{
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+}
+
+.TeamImage{
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+    object-fit: cover;
+    margin: 10px;
+    background-color: white;
+}
+
+.VerticalDetail{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.VerticalDetail h1{
+    font-size: 2.4em;
+    color: white;
+    font-weight: 700;
+    margin: 0;
+}
+
+.VerticalDetail p{
+    font-size: 1.2em;
+    color: white;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.SubDetails{
+    font-size: 1em;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    margin: 5px;
+    max-width: 95%;
+}
+
+.BtnFastForward{
+    margin-top: 20px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 6px 15px;
+    text-decoration: none;
+}
+
+.LastUpdated{
+    color: white;
+    font-size: 0.8em;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+.LiveTableLegend{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #353535;
+    text-align: center;
+    background-color: #E1E1E1;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.EventListWrapper{
+    position: relative;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.JumpUpBtn{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 20px;
+    height: 20px;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: #9E0C21;
+}

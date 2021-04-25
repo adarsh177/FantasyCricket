@@ -12,6 +12,7 @@ import DashboardScreen from './components/DashboardScreen/DashboardScreen';
 import { connect } from 'react-redux';
 import Result from './components/Result/Result';
 import CreateTeam from './components/CreateTeam/CreateTeam';
+import LiveScreen from './components/LiveScreen/LiveScreen';
 
 class App extends React.Component{
 
@@ -79,6 +80,10 @@ class App extends React.Component{
 
           <Route path="/CreateTeam">
             <CreateTeam />
+          </Route>
+
+          <Route path="/Live">
+            <LiveScreen />
           </Route>
         </Switch>
       </Router>

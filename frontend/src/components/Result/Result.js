@@ -11,11 +11,15 @@ const Result = () => {
       </div>
       <br /><br /><br /><br /><br />
       <div className="points">
-        <h1 style={{margin: "0", fontWeight: "400", fontSize: "4.2em"}}>120 </h1>
+        <h1 style={{margin: "0", fontWeight: "400", fontSize: "4.2em"}}>130 </h1>
         <p style={{margin: "0", fontWeight: "300", fontSize: "1em"}}>YOUR POINTS</p>
       </div>
       <br /><br /><br />
       <div className="buttonF">Back to Home</div>
+
+      {/* Firecrackers */}
+      <div class="before"></div>
+      <div class="after"></div>
     </div>
   );
 };
