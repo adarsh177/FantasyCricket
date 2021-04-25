@@ -5,7 +5,7 @@ import ic_delete from '../../../resources/ic_delete.png';
 // props: image, palyerName, playerCredit, isPlayerSelected, onPlayerSelected(newState)
 export default function PlayerSelectEntry(props){
     return(
-        <div style={Styles.mainContainer}>
+        <div key={props.playerName} style={Styles.mainContainer}>
             <img src={props.image} style={Styles.image}  alt=""/>
             <div style={Styles.innerContainer}>
                 <p style={{flex: "3", fontWeight: "400", fontSize: "1em", color: "#1636A4", overflow: "hidden"}}>{props.playerName}</p>

@@ -4,6 +4,8 @@ import IcBat from '../../resources/ic_bat.png';
 import IcBall from '../../resources/ic_ball.svg';
 import LiveEventEntry from './LiveEventEntry';
 import IcUp from '../../resources/ic_up.svg';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 
 class LiveScreen extends React.Component{
@@ -12,6 +14,11 @@ class LiveScreen extends React.Component{
         super(props);
         this.state = {
             showUpBtn: false,
+        }
+
+        if(!this.props.startedFromStart){
+            this.props.history.push('/');
+            console.log('redirecting to home');
         }
     }
 
@@ -112,4 +119,16 @@ class LiveScreen extends React.Component{
     }
 }
 
-export default LiveScreen;
+const mapStateToProps = (state) => {
+    return state;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+    withRouter(LiveScreen)
+);

@@ -29,11 +29,39 @@ class App extends React.Component{
     this.AddAuthListener();
   }
 
+  async loadConfig(){
+    const config = {}
+    config.totalMatch = (await firebase.database().ref('/matches/count').once('value')).val();
+    config.imageUrls = (await firebase.database().ref('/teams').once('value')).val();
+    config.availablePlayers = (await firebase.database().ref('/players').once('value')).val();
+
+    this.props.updateConfig(config);
+  }
+
+  async loadUserData(){
+    const matchHistory = [];
+
+    (await firebase.database().ref(`/Users/${firebase.auth().currentUser.uid}/matches`).orderByChild('start').once('value')).forEach((snap) => {
+      matchHistory.push({
+        start: snap.child('start').val(),
+        balls: snap.child('balls').val(),
+        id: snap.child('id').val(),
+      });
+    });
+
+    this.props.updateMatchHistory(matchHistory);
+  }
+
   AddAuthListener(){
     firebase.auth().onAuthStateChanged(
       (user) => {
         console.log('User log change', user);
         this.props.userLoggedIn(user != null);
+
+        if(user != null){
+          this.loadConfig();
+          this.loadUserData();
+        }
       }
     );
   }
@@ -61,30 +89,12 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
-        
-          <Route exact path="/">
-            <SplashScreen />
-          </Route>
-
-          <Route path="/Login">
-            <LoginScreen />
-          </Route>
-
-          <Route path="/Dashboard">
-            <DashboardScreen />
-          </Route>
-
-          <Route path="/Result">
-            <Result />
-          </Route>
-
-          <Route path="/CreateTeam">
-            <CreateTeam />
-          </Route>
-
-          <Route path="/Live">
-            <LiveScreen />
-          </Route>
+          <Route path="/" exact>      <SplashScreen />    </Route> 
+          <Route path="/Login">       <LoginScreen />     </Route>
+          <Route path="/Dashboard">   <DashboardScreen /> </Route>
+          <Route path="/Result">      <Result />          </Route>
+          <Route path="/CreateTeam">  <CreateTeam />      </Route>
+          <Route path="/Live">        <LiveScreen />      </Route>
         </Switch>
       </Router>
     );
@@ -94,6 +104,8 @@ class App extends React.Component{
 const mapDispatchToProps = (dispatch) => {
   return {
       userLoggedIn: (loggedIn) => dispatch({type: "LOGIN_UPDATE", data: loggedIn}),
+      updateConfig: (config) => dispatch({type: "CONFIG_UPDATE", data: config}),
+      updateMatchHistory: (history) => dispatch({type: "MATCH_HISTORY", data: history})
   }
 }
 

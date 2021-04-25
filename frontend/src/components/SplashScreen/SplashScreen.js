@@ -4,6 +4,7 @@ import BottomImg from "../../resources/splash_bottom.png";
 import React from "react";
 import { withRouter } from "react-router";
 import firebase from 'firebase';
+import { connect } from "react-redux";
 
 
 
@@ -12,6 +13,7 @@ class SplashScreen extends React.Component{
     constructor(props){
         super(props);
         this.history = this.props.history;
+        this.props.setFirstFlag()
     } 
 
     componentDidMount(){
@@ -41,4 +43,16 @@ class SplashScreen extends React.Component{
     }
 }
 
-export default withRouter(SplashScreen);
+const mapStateToPropes = (state) => {
+    return state;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFirstFlag: () => dispatch({type: "SET_START_FLAG", data: true}),
+    };
+}
+
+export default connect(mapStateToPropes, mapDispatchToProps)(
+    withRouter(SplashScreen)
+);

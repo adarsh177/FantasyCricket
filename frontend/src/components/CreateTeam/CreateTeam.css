@@ -151,3 +151,18 @@
 .ListWrapper:last-child{
     margin-bottom: 50px;
 }
+
+.TeamError{
+    position: fixed;
+    left: 50%;
+    bottom: 30%;
+    width: calc(60% - 20px);
+    padding: 10px;
+    background-color: rgba(170, 11, 11, 0.6);
+    border: 1px solid rgba(170, 11, 11, 1);
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    text-align: center;
+    transform: translateX(-50%);
+    font-weight: 400;
+}

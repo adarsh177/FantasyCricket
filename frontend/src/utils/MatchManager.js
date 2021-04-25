@@ -1,8 +1,6 @@
-
-
 class MatchManager{
 
-    EventData = {
+    BowlerEventData = {
         "caught": 25,
         "bowled": 33,
         "run out": 25,
@@ -11,13 +9,19 @@ class MatchManager{
         "stumped": 25,
         "caught and bowled": 40,
         "hit wicket": 25,
-    }
+    };
+
+    PlayerScores= {};
+
+    Players = {}; //playername: teamname
 
     constructor(jsonData){
         if(typeof jsonData == "string")
             this.json = JSON.parse(jsonData);
         else
             this.json = jsonData;
+
+            console.log("Json got", this.json);
 
         this.seeker = 0;
         this.totalLength = 0;
@@ -34,6 +38,26 @@ class MatchManager{
         this.totalLength = this.firstInningLength + this.secondInningLength;
         this.firstTeam = this.json.innings[0]['1st innings'].team;
         this.secondTeam = this.json.innings[1]['2nd innings'].team;
+
+        this.loadPlayers();
+    }
+
+    loadPlayers(){
+        this.json.innings[0]['1st innings'].deliveries.forEach(element => {
+            var key = Object.keys(element)[0];
+            var batsman = element[key].batsman;
+            var bowler = element[key].bowler;
+            var non_striker  = element[key].non_striker;
+
+            if(this.Players[batsman] === undefined)
+                this.Players[batsman] = this.firstTeam;
+            
+            if(this.Players[non_striker] === undefined)
+                this.Players[non_striker] = this.firstTeam;
+            
+            if(this.Players[bowler] === undefined)
+                this.Players[bowler] = this.secondTeam;
+        });
     }
 
     getNext(){
@@ -51,6 +75,9 @@ class MatchManager{
                 ],
                 kind: "",
                 player_out: ""
+            },
+            point: {
+                "Player": 0
             }
         };
 

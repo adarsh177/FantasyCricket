@@ -6,16 +6,60 @@ import {withRouter} from 'react-router-dom';
 import CreateTeamBtn from '../CreateTeamBtn';
 import NoMatchImg from '../../resources/no_match.png';
 import MatchHistory from './MatchHistory';
+import {GetMatchJSON} from '../../utils/UtilFunctions';
+import MatchManager from '../../utils/MatchManager';
 
 class DashboardScreen extends React.Component{
 
     constructor(props){
         super(props);
+        this.state = {
+            random: {
+                team1: '',
+                team2: '',
+                t1Img: '',
+                t2Img: '',
+                id: '',
+            }
+        }
     }
 
-    RandomizeMatch(){
-        console.log('Props', this.props);
-        alert(JSON.stringify(this.props, null, 0));
+    async RandomizeMatch(){
+        var rand = Math.floor(Math.random() * this.props.configData.totalMatch);
+        var details = await firebase.database().ref(`/matches/matches/m${rand}`).once('value');
+        this.state.random = {
+            team1: details.child('t1').val(),
+            team2: details.child('t2').val(),
+            t1Img: this.props.configData.imageUrls[details.child('t1').val()],
+            t2Img: this.props.configData.imageUrls[details.child('t2').val()],
+            id: details.child('id').val(),
+        }
+        this.forceUpdate()
+    }
+
+    CheckIfMatchOngoing(){
+        if(this.props.matchHistory == null){
+            setTimeout(() => this.CheckIfMatchOngoing(), 500);
+            return;
+        }
+
+        var isOngoing = false;
+        this.props.matchHistory.forEach((match) => {
+            if((match.start + (match.balls * 5000)) > new Date().getTime()){
+                isOngoing = true;
+            }
+        });
+        return isOngoing;
+    }
+
+    componentDidMount(){
+        var isMatchOngoing = this.CheckIfMatchOngoing();
+        console.log('Match ongoing', isMatchOngoing);
+        if(isMatchOngoing){
+            this.props.history.push('/Live');
+        }else{
+            this.RandomizeMatch();
+        }
     }
 
     render(){
@@ -28,13 +72,13 @@ class DashboardScreen extends React.Component{
 
                     <div className="TeamContainerDashboard">
                         <div className="TeamEntryContainer">
-                            <img src="https://i.pinimg.com/originals/85/52/f8/8552f811e95b998d9505c43a9828c6d6.jpg" alt="" />
-                            <p className="TeamName">Chennai Super Kings</p>
+                            <img src={this.state.random.t1Img} alt="" />
+                            <p className="TeamName">{this.state.random.team1}</p>
                         </div>
                         <div className="VirticalRule"></div>
                         <div className="TeamEntryContainer">
-                            <img src="https://static.toiimg.com/thumb/msid-67150433,width-1200,height-900,resizemode-4/.jpg" alt="" />
-                            <p className="TeamName">Kings XI Punjab</p>
+                            <img src={this.state.random.t2Img} alt="" />
+                            <p className="TeamName">{this.state.random.team2}</p>
                         </div>
                     </div>
                     <br />
@@ -62,6 +106,7 @@ class DashboardScreen extends React.Component{
     }
 
     createTeam(){
+        this.props.selectMatch(this.state.random.id);
         this.props.history.push('/CreateTeam');
     }
 
@@ -74,6 +119,7 @@ class DashboardScreen extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         userLoggedIn: (loggedIn) => dispatch({type: "LOGIN_UPDATE", data: loggedIn}),
+        selectMatch: (matchId) => dispatch({type: "MATCH_ID_SELECTED", data: matchId}),
     }
 }
 

@@ -2,7 +2,7 @@ import ic_add from '../../../resources/ic_add.png';
 import ic_delete from '../../../resources/ic_delete.png';
 
 
-// props: image, palyerName, playerCredit, isPlayerSelected, onPlayerSelected(newState)
+// props: image, palyerName, captain, viceCaptain, playerCredit, onCaptainSelected, onViceCaptainSelected(newState)
 export default function C_VC_SelectEntry(props){
     return(
         <div style={Styles.mainContainer}>
@@ -10,8 +10,8 @@ export default function C_VC_SelectEntry(props){
             <div style={Styles.innerContainer}>
                 <p style={{flex: "4", fontWeight: "400", fontSize: "1em", color: "#1636A4", overflow: "hidden"}}>{props.playerName}</p>
                 <div style={{flex: "2", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
-                    <div style={Styles.Button}>C</div>
-                    <div style={Styles.ButtonSelected}>VC</div>
+                    <div onClick={() => props.onCaptainSelected()} style={props.captain === props.playerName ? Styles.ButtonSelected : Styles.Button}>C</div>
+                    <div onClick={() => props.onViceCaptainSelected()} style={props.viceCaptain === props.playerName ? Styles.ButtonSelected : Styles.Button}>VC</div>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@ const Styles = {
         alignItems: "center"
     },
     Button: {
-        backgroundColor: "none",
+        backgroundColor: "white",
         border: "1px solid #1636A4",
         color: "#1636A4",
         borderRadius: "25px",
