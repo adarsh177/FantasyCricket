@@ -177,9 +177,9 @@ class DashboardScreen extends React.Component{
     }
 
     async logout(){
-        console.log(this.state.totalPoints, this.state.history);
-        // await firebase.auth(firebase.app()).signOut();
-        // this.props.history.push('/Login');
+        // console.log(this.state.totalPoints, this.state.history);
+        await firebase.auth(firebase.app()).signOut();
+        this.props.history.push('/Login');
     }
 }
 
